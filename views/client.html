@@ -1,0 +1,29 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var name=prompt();
+    var name2= prompt();
+
+
+
+    io = io.connect()
+    io.emit('ready',[name,name2])
+    io.on('talk', function(data) {
+        console.log(data.message)
+    })
+    var tweet=0;
+    var tweet2=0;
+
+
+
+    io.on('tweet',function(data){
+        tweet++;
+        console.log(data[1],tweet,data[0])
+
+    })
+
+    io.on('tweet2',function(data){
+        tweet2++;
+        console.log(data[1],tweet2,data[0])
+    })
+
+</script>
